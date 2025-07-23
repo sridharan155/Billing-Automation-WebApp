@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ExpenditurePage.css">
+    <title>Billing Dashboard</title>
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Billing</h2>
+            <ul>
+                <li><a href="file:///C:/Users/SURIYA/OneDrive/Desktop/Billing%20proj/Ex.html#" class ="active">Dashboard</a></li>
+                <li><a href="file:///C:/Users/SURIYA/Downloads/calc/billing.html#">Bills</a></li>
+                <li><a href="#">Invoices</a></li>
+                <li><a href="#">Report</a></li>
+                <li><a href="#">Bills Details</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Help Center</a></li>
+            </ul>
+        </div>
+
+        <div class="dashboard">
+        <div class="content">
+            <h2>Expenditure Details</h2>
+            <div class="form-group">
+                <label for="empNo">Employee No</label>
+                <input type="text" id="empNo" value="" >
+            </div>
+            <div class="form-group">
+                <label for="empNa">Employee Name</label>
+                <input type="text" id="empNa" value="" >
+            </div>
+
+            <div class="form-bill">
+                <tr> <label for="billAmount">Bill Amount</label>
+                 <input type="text" id="billAmount" value="₹" >
+                 <label for="billDate">Bill Date</label>
+                 <input type="date" id="billDate" value="" >
+             </div>
+            <div class="form-group">
+                <label for="expenditureDetails">Expenditure details</label>
+                <input type="text" id="expenditureDetails" value="">
+            </div>
+            <div class="form-group">
+                <label for="expenditureDescription">Expenditure description</label>
+                <textarea id="expenditureDescription"></textarea>
+            </div>
+            <div class="form-group upload-area">
+                <input type="file" id="upload" hidden>
+                <button type="button" onclick="document.getElementById('upload').click()">Upload</button>
+                <p>Drop Your Bills Here</p>
+            </div>
+            <div class="form-group button-group">
+                <button type="submit">Submit</button>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+</body>
+</html>

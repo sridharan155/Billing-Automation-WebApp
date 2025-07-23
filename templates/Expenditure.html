@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ExpenditurePage.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Billing Dashboard</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    background-color: transparent;
+}
+  
+.container {
+    display: flex;
+    width: 100%;
+}
+  
+.sidebar ul li a.active, .sidebar ul li a:hover {
+    background-color: #1c87c9;
+    color: white;
+}
+.sidebar ul li a.active {
+    background-color: #1c87c9;
+    color: white;
+    font-weight: bold;
+    transform: translateX(5px);
+}
+
+.sidebar {
+    width: 15%;
+    background-color: #2c3e50;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    color: white;
+    transition: all 0.3s ease;
+}
+  
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #ecf0f1;
+}
+  
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+  
+.sidebar ul li {
+    margin-bottom: 20px;
+}
+  
+.sidebar ul li a {
+    text-decoration: none;
+    color: #bdc3c7;
+    font-size: 18px;
+    padding: 10px 16px;
+    display: block;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+  
+.sidebar ul li a:hover {
+    background-color: #1c87c9;
+    color: white;
+}
+  
+.sidebar ul li a::before {
+    content: '•';
+    margin-right: 10px;
+    color: #1c87c9;
+    transition: all 0.3s ease;
+}
+  
+.sidebar ul li a:hover::before {
+    color: white;
+}
+  
+.sidebar ul li a:hover {
+    transform: translateX(5px);
+}
+  
+.content {
+    margin-left: 20%; /* Adjusts for the fixed sidebar */
+    margin-top: -20px; /* Move the content upwards */
+    padding: 40px;
+    background-color: #fff;
+    width: 80%;
+}
+
+.dashboard {
+    padding: 50px;
+    width: 90%;
+    margin-top: -20px; /* Moves the dashboard upwards if needed */
+}
+
+.content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+  
+.form-group {
+    margin-bottom: 15px;
+}
+  
+.form-group label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+  
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-group input[type="date"] {
+    font-size: 16px;
+}
+  
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    margin: auto;
+    width: 300px;
+}
+  
+.upload-area:hover {
+    background-color: #e0e0e0;
+}
+  
+.upload-area button,
+.form-group button {
+    background-color: #1c87c9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+  
+.form-group button:hover,
+.upload-area button:hover {
+    background-color: #145a86;
+}
+  
+.form-group.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.dashboard {
+    padding: 50px;
+    width: 90%;
+}
+  
+.upload-area {
+    width: 400px;
+    border-radius: 20px;
+}
+  
+.form-bill {
+    display: flex;
+    gap: 20px; /* Adds space between elements */
+    padding-left: 0;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size: 20px;
+    margin: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+  
+.form-bill label {
+    margin-right: 10px;
+    font-size: 18px; /* Increase the label font size */
+}
+  
+.form-bill input {
+    padding: 10px;
+    font-size: 16px;
+    flex: 1; /* Ensures the inputs are of equal width */
+    margin-right: 20px; /* Adds space between inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+  
+.form-group input {
+    width: 100%; /* Makes the input take up full width of its container */
+}
+
+/* Sign-in button */
+.navbar {
+    background-color: transparent;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .btn-signin {
+    background-color: #1c87c9;
+    color: white;
+    border-radius: 5px;
+}
+
+.navbar .btn-signin:hover {
+    background-color: #328614;
+    transition: 1s;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navbar for Sign-in -->
+    <div class="navbar">
+      <button class="btn btn-signin" onclick="location.href='{{ url_for('index') }}' ">Sign out</button>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <h2>Billing</h2>
+            <ul>
+                <li><a href="/expenditure" class ="active">Dashboard</a></li>
+                <li><a href="/bill">Bills</a></li>
+                <li><a href="#">Invoices</a></li>
+                <li><a href="#">Report</a></li>
+                <li><a href="#">Bills Details</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Help Center</a></li>
+            </ul>
+        </div>
+        <form action="billing" method="post">
+            <div class="dashboard">
+                <div class="content">
+                    <h2>Expenditure Details</h2>
+                    <div class="form-group">
+                        <label for="empNo">Employee No</label>
+                        <input type="text" id="empNo" name="empNo" >
+                    </div>
+                    <div class="form-group">
+                        <label for="empName">Employee Name</label>
+                        <input type="text" id="empName" name="empName" >
+                    </div>
+
+                    <div class="form-bill">
+                        <label for="billAmount">Bill Amount</label>
+                        <input type="text" id="billAmount" name="billAmount" >
+                        <label for="billDate">Bill Date</label>
+                        <input type="date" id="billDate" name="billDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="expenditureDetails">Expenditure details</label>
+                        <input type="text" id="expenditureDetails" name="expenditure_details">
+                    </div>
+                    <div class="form-group">
+                        <label for="expenditureDescription">Expenditure description</label>
+                        <textarea id="expenditureDescription" name="expenditure_description" ></textarea>
+                    </div>
+                    <div class="form-group upload-area">
+                        <input type="file" id="upload" hidden>
+                        <button type="button" onclick="document.getElementById('upload').click()">Upload</button>
+                        <p>Drop Your Bills Here</p>
+                    </div>
+                    <div class="form-group button-group">
+                        <button type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
